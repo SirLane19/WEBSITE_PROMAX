@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <title>PROMAX - Media To The Max</title>
+    <style>
+        body {
+            background: radial-gradient(circle at left, rgba(9, 57, 5, 0.8) 10%, rgba(0, 0, 0, 1) 70%),
+                radial-gradient(circle at right, rgba(9, 57, 5, 0.8) 10%, rgba(0, 0, 0, 1) 70%);
+            background-color: #000; 
+            /* Warna dasar hitam */
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* Lingkaran hijau */
+        .circle-background {
+            position: absolute;
+            width: 300px;
+            /* Sesuaikan ukuran */
+            height: 300px;
+            /* Sesuaikan ukuran */
+            background: radial-gradient(circle, rgba(9, 57, 5, 1) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            z-index: -5;
+        }
+
+        /* Posisi lingkaran */
+        .circle-1 {
+            top: 150px;
+            left: 30%;
+        }
+
+        .circle-2 {
+            top: 600px;
+            left: 70%;
+        }
+
+        .header-logo {
+            color: #51B016;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #51B016;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Membesarkan ukuran gambar */
+        .large-poster {
+            height: 100%;
+            /* Penuhi tinggi elemen container */
+            max-height: 500px;
+            /* Batasi tinggi maksimum */
+            object-fit: cover;
+            /* Pastikan gambar tidak terdistorsi */
+        }
+
+        /* Movie Card Styling */
+        .movie-card {
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        /* Default Play Icon and Movie Info (hidden initially) */
+        .play-icon,
+        .movie-info {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* When Hovering Over the Movie Card */
+        .movie-card:hover .play-icon,
+        .movie-card:hover .movie-info {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Play Icon Styling (positioned at bottom-right) */
+        .play-icon {
+            bottom: 30px;
+            /* Jarak dari bawah */
+            right: 30px;
+            /* Jarak dari kanan */
+            z-index: 2;
+            padding: 10px;
+            background-color: #39B54A;
+            border: none;
+            cursor: pointer;
+            transform: translate(0, 0);
+        }
+
+        /* Overlay Text Styling */
+        .movie-info {
+            z-index: 1;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3));
+            width: 100%;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            bottom: 0;
+        }
+
+        /* SLIDER */
+        .owl-carousel .item {
+            position: relative;
+            text-align: center;
+        }
+
+        .owl-carousel .item img {
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .custom-placeholder::placeholder {
+            color: gray !important;
+            /* Warna placeholder */
+            opacity: 1;
+            /* Pastikan placeholder terlihat jelas */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle-background circle-1"></div>
+    <div class="circle-background circle-2"></div>
+    <!-- HEADER -->
+    <header>
+        <nav class="navbar navbar-expand-lg px-5 pt-3 bg-transparent position-sticky">
+            <div class="container-fluid">
+                <!-- Logo dan Slogan -->
+                <div class="d-flex flex-column">
+                    <a class="navbar-brand fw-bold fs-3 mb-0 text-white" href="#">
+                        PRO<span style="color: #51B016;">MAX</span>
+                    </a>
+                    <small class="text-white fw-bold py-0">Produksi Media To The Max</small>
+                </div>
+
+                <!-- Toggler untuk Mobile View -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar Konten -->
+                <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+                    <!-- Menu Tengah -->
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white active fw-bold border-3 mx-3 border-bottom border-light"
+                                aria-current="page" href="/home.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-bold" href="/series.html">Series</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle fw-bold" href="/category.html" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Category
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/category.html">Thriller</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-bold" href="/about.html">About</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Profil di Kanan -->
+                <div class="d-flex align-items-center">
+                    <!-- Teks Profil -->
+                    <div class="text-end me-3">
+                        <strong class="text-success">Anomali Promed</strong><br>
+                        <small class="text-white fw-semibold">anakpromed2024@gmail.com</small>
+                    </div>
+                    <!-- Foto Profil -->
+                    <span
+                        class="badge rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                        style="width: 40px; height: 40px;">
+                        <i class="bi bi-person-fill" style="font-size: 1.5rem;"></i>
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- MAIN - NEW RELEASE -->
+    <main class="container my-5">
+        <h1 class="fw-bold mb-4">New Release</h1>
+        <!-- Carousel -->
+        <div id="movieBanner" class="carousel slide" data-bs-ride="carousel">
+            <!-- Carousel Inner -->
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <!-- Banner Container -->
+                    <div class="row justify-content-center">
+                        <!-- Banner with content -->
+                        <div class="col-md-12 position-relative">
+                            <!-- Image with overlay -->
+                            <img src="assets/horizontal-poster/SialanNihFilm.png" class="d-block w-100 rounded-4"
+                                alt="Movie Image" style="object-fit: cover; height: 550px;">
+                            <!-- Overlay and Content -->
+                            <div class="position-absolute bottom-0 start-0 px-5 w-100"
+                                style="background-color: rgba(0, 0, 0, 0.5);">
+                                <!-- Content positioned at bottom-left using Flexbox -->
+                                <div
+                                    class="d-flex flex-column justify-content-center align-items-start p-4 text-white h-100">
+                                    <!-- Movie Title Section with Flexbox -->
+                                    <div class="d-flex align-items-center">
+                                        <!-- "Filmed For Promax" Section with background color -->
+                                        <div class="bg-success text-white fw-bold px-3 py-1 rounded"
+                                            style="background-color: #39B54A;">
+                                            <h4 class="m-0 fw-semibold">Filmed For Promax</h4>
+                                        </div>
+                                        <!-- "Now Playing" Section -->
+                                        <div class="ms-3 pt-1">
+                                            <h3 class="m-0 fw-bold">Now Playing</h3>
+                                        </div>
+                                    </div>
+                                    <!-- Movie Title -->
+                                    <h1 class="fw-bold mt-3">Sialan Nih Film</h1>
+                                    <!-- Play Trailer Button with background color -->
+                                    <div class="d-flex align-items-center mb-4">
+                                        <button
+                                            class="btn rounded-circle d-flex align-items-center justify-content-center"
+                                            style="background-color: #39B54A; width: 50px; height: 50px;">
+                                            <i class="bi bi-play-fill text-white" style="font-size: 1.5rem;"></i>
+                                        </button>
+                                        <span class="ms-3" style="font-size: 1.2rem;">Play Trailer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <!-- Banner Container -->
+                    <div class="row justify-content-center">
+                        <!-- Banner with content -->
+                        <div class="col-md-12 position-relative">
+                            <!-- Image with overlay -->
+                            <img src="assets/horizontal-poster/poster4.jpg" class="d-block w-100 rounded-4"
+                                alt="Movie Image" style="object-fit: cover; height: 550px;">
+                            <!-- Overlay and Content -->
+                            <div class="position-absolute bottom-0 start-0 px-5 w-100"
+                                style="background-color: rgba(0, 0, 0, 0.5);">
+                                <!-- Content positioned at bottom-left using Flexbox -->
+                                <div
+                                    class="d-flex flex-column justify-content-center align-items-start p-4 text-white h-100">
+                                    <!-- Movie Title Section with Flexbox -->
+                                    <div class="d-flex align-items-center">
+                                        <!-- "Filmed For Promax" Section with background color -->
+                                        <div class="bg-success text-white fw-bold px-3 py-1 rounded"
+                                            style="background-color: #39B54A;">
+                                            <h4 class="m-0 fw-semibold">Filmed For Promax</h4>
+                                        </div>
+                                        <!-- "Now Playing" Section -->
+                                        <div class="ms-3 pt-1">
+                                            <h3 class="m-0 fw-bold">Now Playing</h3>
+                                        </div>
+                                    </div>
+                                    <!-- Movie Title -->
+                                    <h1 class="fw-bold mt-3">Looper</h1>
+                                    <!-- Play Trailer Button with background color -->
+                                    <div class="d-flex align-items-center mb-4">
+                                        <button
+                                            class="btn rounded-circle d-flex align-items-center justify-content-center"
+                                            style="background-color: #39B54A; width: 50px; height: 50px;">
+                                            <i class="bi bi-play-fill text-white" style="font-size: 1.5rem;"></i>
+                                        </button>
+                                        <span class="ms-3" style="font-size: 1.2rem;">Play Trailer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item">
+                    <!-- Banner Container -->
+                    <div class="row justify-content-center">
+                        <!-- Banner with content -->
+                        <div class="col-md-12 position-relative">
+                            <!-- Image with overlay -->
+                            <img src="assets/horizontal-poster/poster2.jpeg" class="d-block w-100 rounded-4"
+                                alt="Movie Image" style="object-fit: cover; height: 550px;">
+                            <!-- Overlay and Content -->
+                            <div class="position-absolute bottom-0 start-0 px-5 w-100"
+                                style="background-color: rgba(0, 0, 0, 0.5);">
+                                <!-- Content positioned at bottom-left using Flexbox -->
+                                <div
+                                    class="d-flex flex-column justify-content-center align-items-start p-4 text-white h-100">
+                                    <!-- Movie Title Section with Flexbox -->
+                                    <div class="d-flex align-items-center">
+                                        <!-- "Filmed For Promax" Section with background color -->
+                                        <div class="bg-success text-white fw-bold px-3 py-1 rounded"
+                                            style="background-color: #39B54A;">
+                                            <h4 class="m-0 fw-semibold">Filmed For Promax</h4>
+                                        </div>
+                                        <!-- "Now Playing" Section -->
+                                        <div class="ms-3 pt-1">
+                                            <h3 class="m-0 fw-bold">Now Playing</h3>
+                                        </div>
+                                    </div>
+                                    <!-- Movie Title -->
+                                    <h1 class="fw-bold mt-3">Jurrasic Park</h1>
+                                    <!-- Play Trailer Button with background color -->
+                                    <div class="d-flex align-items-center mb-4">
+                                        <button
+                                            class="btn rounded-circle d-flex align-items-center justify-content-center"
+                                            style="background-color: #39B54A; width: 50px; height: 50px;">
+                                            <i class="bi bi-play-fill text-white" style="font-size: 1.5rem;"></i>
+                                        </button>
+                                        <span class="ms-3" style="font-size: 1.2rem;">Play Trailer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#movieBanner" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#movieBanner" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#movieBanner" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <!-- Carousel Controls -->
+            <div class="position-absolute end-0 top-50 translate-middle-y me-3">
+                <button class="carousel-control-prev" type="button" data-bs-target="#movieBanner" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#movieBanner" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </main>
+    <!-- MAIN - TEXTING INPUT -->
+    <main class="container my-5 py-5 d-flex flex-column justify-content-center align-items-center text-center">
+        <div class="col-md-8">
+            <!-- Menyelaraskan h1 dalam satu baris -->
+            <div class="d-flex justify-content-center align-items-center">
+                <h1 class="fw-bold" style="font-size: 40px;">Unlock the Full Power of
+                    <span style="color: #39B54A;">PROMAX</span>
+                </h1>
+            </div>
+
+            <!-- Deskripsi teks -->
+            <h5 class="mt-4">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio nisi quibusdam molestiae dolore. Ratione,
+                in? Laudantium facilis quod fugit odio magni sed animi et expedita!
+            </h5>
+
+            <!-- Input dan tombol Sign Up -->
+            <div class="d-flex justify-content-center align-items-center mt-4">
+                <input type="text" class="form-control bg-dark text-white custom-placeholder" placeholder="Email"
+                    style="height: 50px; margin-right: 10px; width: 70%;">
+                <button class="btn fw-bold text-white"
+                    style="background-color: #39B54A; height: 50px; font-size: 18px; width: 30%;">
+                    Sign Up - It's Free!
+                </button>
+            </div>
+        </div>
+    </main>
+
+
+
+
+    <!-- CARD - ANIMATION CARD -->
+    <main class="container my-5">
+        <h1 class="text-center fw-bold my-5">Dive Into Endless Stories and <br><span style="color:#39B54A;">Unforgottable
+                Moments.</span></h1>
+        <div class="owl-carousel owl-carousel-horizontal">
+            <div class="kartu">
+                <img src="assets/horizontal-poster/SialanNihFilm.png" alt="Kartu 1">
+            </div>
+            <div class="kartu">
+                <img src="assets/horizontal-poster/poster2.jpeg" alt="Kartu 2">
+            </div>
+            <div class="kartu">
+                <img src="assets/horizontal-poster/poster3.jpg" alt="Kartu 3">
+            </div>
+            <div class="kartu">
+                <img src="assets/horizontal-poster/poster4.jpeg" alt="Kartu 4">
+            </div>
+        </div>
+    </main>
+
+
+
+
+
+
+
+
+    <!-- MAIN - COMING SOON SERIES -->
+    <main class="container my-5 pt-5">
+        <h2 class="mb-3 fs-1 fw-bold">Coming Soon to <span style="color:#39B54A;">PROMAX</span></h2>
+        <div class="owl-carousel owl-carousel-vertical">
+            <!-- Item 1 -->
+            <div class="item">
+                <img src="assets/poster/pipedream2.jpg" alt="Film 5" class="img-fluid rounded m-md-3">
+            </div>
+            <div class="item">
+                <img src="assets/poster/1728360427852.jpg" alt="Film 1" class="img-fluid rounded m-md-3">
+            </div>
+            <div class="item">
+                <img src="assets/poster/1728360263648.jpg" alt="Film 2" class="img-fluid rounded m-md-3">
+            </div>
+            <div class="item">
+                <img src="assets/poster/1728304855900.jpg" alt="Film 2" class="img-fluid rounded m-md-3">
+            </div>
+            <div class="item">
+                <img src="assets/poster/1728360322349.jpg" alt="Film 2" class="img-fluid rounded m-md-3">
+            </div>
+            <div class="item">
+                <img src="assets/poster/1728265856903.jpg" alt="Film 3" class="img-fluid rounded m-md-3">
+            </div>
+            <!-- Tambahkan item lainnya sesuai kebutuhan -->
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-white py-5" style="background-color: #39B54A;">
+        <div class="container">
+            <div class="row">
+                <!-- OUR VISION Section -->
+                <div class="col-md-4">
+                    <h3>OUR VISION</h3>
+                    <p>Crafting Timeless Stories for the Discerning Audience.</p>
+                    <h3>About Us</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Passion for Film</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Behind the Lens</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Our Journey</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Press & Media</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- EXPLORE Section -->
+                <div class="col-md-4">
+                    <h3>EXPLORE</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Exclusive Releases</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Cinematic Events</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Behind-the-Scenes</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Featured Artists</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Discover More</a></li>
+                    </ul>
+                    <h3>CONNECT WITH US</h3>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-tiktok fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-youtube fs-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- DOWNLOAD OUR APP Section -->
+                <div class="col-md-4">
+                    <h3>DOWNLOAD OUR APP</h3>
+                    <div class="d-flex flex-column">
+                        <a href="#">
+                            <img src="assets/icon/appstore-playstore.png" alt="App Store & play store"
+                                style="width: 140px; height: auto;">
+                        </a>
+                        <p>PROMAX is a registered trademark of PROMAX. &copy; 2024 PROMAX. All rights reserved.</p>
+                        <p>WHERE CINEMA MEETS ELEGANCE. EXPERIENCE THE DIFFERENCE.</p>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white text-decoration-none">Terms Of Use</a></li>
+                            <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                            <li><a href="#" class="text-white text-decoration-none">Cookies Policy</a></li>
+                            <li><a href="#" class="text-white text-decoration-none">Privacy Settings</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Owl Carousel Vertikal
+            $(".owl-carousel-vertical").owlCarousel({
+                loop: true,
+                margin: 20,
+                center: true,
+                nav: false,
+                dots: false,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                smartSpeed: 3500,
+                responsive: {
+                    0: {
+                        items: 1.5
+                    },
+                    576: {
+                        items: 2.5
+                    },
+                    768: {
+                        items: 3.5
+                    },
+                    1024: {
+                        items: 4.4
+                    }
+                }
+            });
+
+            // Owl Carousel Horizontal
+            $(".owl-carousel-horizontal").owlCarousel({
+                loop: true,
+                margin: 10,
+                center: true,
+                nav: false,
+                dots: false,
+                autoplay: true,
+                autoplayTimeout: 3500,
+                smartSpeed: 2500,
+                responsive: {
+                    0: {
+                        items: 1.5
+                    },
+                    576: {
+                        items: 2.5
+                    },
+                    768: {
+                        items: 3.5
+                    },
+                    1024: {
+                        items: 3
+                    }
+                }
+            });
+        });
+
+    </script>
+    <!-- <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                loop: true,               // Aktifkan looping
+                margin: 10,               // Jarak antar poster
+                center: true,             // Aktifkan item di tengah sebagai fokus
+                nav: false,               // Tidak menampilkan tombol navigasi
+                dots: false,              // Tidak menampilkan navigasi dot
+                autoplay: true,           // Aktifkan autoplay
+                autoplayTimeout: 3000,    // Durasi slide dalam ms
+                smartSpeed: 1500,         // Transisi antar slide
+                responsive: {
+                    0: {
+                        items: 1.5        // Tampilkan 1.5 poster pada layar kecil
+                    },
+                    576: {
+                        items: 2.5        // Tampilkan 2.5 poster pada layar sedang
+                    },
+                    768: {
+                        items: 3.5        // Tampilkan 3.5 poster pada layar medium
+                    },
+                    1024: {
+                        items: 4.4        // Tampilkan 5.5 poster pada layar besar
+                    }
+                }
+            });
+        });
+
+    </script> -->
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</body>
+
+</html>
